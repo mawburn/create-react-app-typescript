@@ -136,7 +136,7 @@ module.exports = {
     // https://github.com/facebook/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.mjs', '.web.js', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.mjs', '.web.js', '.js', '.json', '.web.jsx', '.jsx', '.ts', '.tsx'],
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -170,7 +170,7 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
-        test: /\.(js|mjs|jsx)$/,
+        test: /\.(js|mjs|jsx|ts|tsx)$/,
         enforce: 'pre',
         use: [
           {
@@ -203,7 +203,7 @@ module.exports = {
           // Process application JS with Babel.
           // The preset includes JSX, Flow, and some ESnext features.
           {
-            test: /\.(js|mjs|jsx)$/,
+            test: /\.(js|mjs|jsx|ts|tsx)$/,
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
@@ -234,7 +234,7 @@ module.exports = {
           // Process any JS outside of the app with Babel.
           // Unlike the application JS, we only compile the standard ES features.
           {
-            test: /\.(js|mjs)$/,
+            test: /\.(js|mjs|ts|tsx)$/,
             exclude: /@babel(?:\/|\\{1,2})runtime/,
             loader: require.resolve('babel-loader'),
             options: {
@@ -314,7 +314,7 @@ module.exports = {
             // its runtime that would otherwise be processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|mjs|jsx)$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
             loader: require.resolve('file-loader'),
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
